@@ -10,6 +10,8 @@ object Fibonacci {
    * Next terms are the sum of the two precedent :
    *  - Third term is the sum of First and Second terms : 0 + 1 = 1
    *  - Fourth term is the sum of Second and Third terms : 1 + 1 = 2
+   * The index for the firs term is 0.
+   *
    */
   def getFibonacciNumber(termIndex: Int): Int = {
 
@@ -22,12 +24,10 @@ object Fibonacci {
     }
 
     termIndex match {
-      case 1 =>
-        0
-      case 2 =>
-        1
-      case v if v > 2 =>
-        sumFibonacciNumber(3, 0, 1)
+      case v if v > 1 =>
+        sumFibonacciNumber(2, 0, 1)
+      case v if v > -1 =>
+        v
       case _ =>
         ErrorFibonacciNumber
     }
@@ -35,8 +35,8 @@ object Fibonacci {
 
   def getFibonacciSuite(lastTerm: Int): String = {
     lastTerm match {
-      case v if v > 0 =>
-        (1 to v).toList.map(getFibonacciNumber).mkString(", ")
+      case v if v > -1 =>
+        (0 to v).toList.map(getFibonacciNumber).mkString(", ")
       case _ =>
         ErrorFibonacciSuite
     }
