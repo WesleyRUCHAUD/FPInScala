@@ -33,10 +33,10 @@ object Fibonacci {
     }
   }
 
-  def getFibonacciSuite(lastTerm: Int): String = {
+  def getFibonacciSuite(lastTerm: Int, fct: Int => Int): String = {
     lastTerm match {
       case v if v > -1 =>
-        (0 to v).toList.map(getFibonacciNumber).mkString(", ")
+        (0 to v).toList.map(fct).mkString(", ")
       case _ =>
         ErrorFibonacciSuite
     }
