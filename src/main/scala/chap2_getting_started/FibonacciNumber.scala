@@ -2,6 +2,7 @@ package chap2_getting_started
 
 object FibonacciNumber {
 
-  def getFibonnaciNumber(n: Int): Int = ???
+  @annotation.tailrec
+  def getFibonacciNumber(n: Int): Int = ???
 
 }
