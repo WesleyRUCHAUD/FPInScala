@@ -59,16 +59,48 @@ object List {
     }
   }
 
+  def foldRightByLeft[A,B](as: List[A], acc: B)(f: (A, B) => B): B = {
+    foldLeft(reverse(as), acc)((b: B, a: A) => f(a, b))
+  }
+
+  def foldLeftByRight[A,B](as: List[A], acc: B)(f: (B, A) => B): B = {
+    foldRight(reverse(as), acc)((a: A, b: B) => f(b, a))
+  }
+
   def sum(is: List[Int]): Int = {
     foldRight(is, 0)(_ + _)
+  }
+
+  def sumLeft(is: List[Int]): Int = {
+    foldLeft(is, 0)(_ + _)
   }
 
   def product(ds: List[Double]): Double = {
     foldRight(ds, 1.0)(_ * _)
   }
 
-  def length[A](l: List[A]): Int = {
-    foldRight(l, 0)((_, b) => b + 1)
+  def productLeft(ds: List[Double]): Double = {
+    foldLeft(ds, 1.0)(_ * _)
+  }
+
+  def append[A](l: List[A], r: List[A]): List[A] = {
+    foldRight(l, r)(Cons(_, _))
+  }
+
+  def appendLeft[A](l: List[A], r: List[A]): List[A] = {
+    foldLeft(reverse(l), r)((t, h) => Cons(h, t))
+  }
+
+  def length[A](as: List[A]): Int = {
+    foldRight(as, 0)((_, b) => b + 1)
+  }
+
+  def lengthLeft[A](as: List[A]): Int = {
+    foldLeft(as, 0)((acc, _) => acc + 1)
+  }
+
+  def reverse[A](as: List[A]): List[A] = {
+    foldLeft(as, Nil: List[A])((t, h) => Cons(h, t))
   }
 
   def apply[A](as: A*): List[A] = {
