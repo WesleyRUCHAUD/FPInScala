@@ -9,3 +9,5 @@ val r = l match {
   case Cons(h, t) => h + List.sum(t)
   case _ => 101
 }
+
+val n = List.foldRight(l, Nil: List[Int])(Cons(_, _))

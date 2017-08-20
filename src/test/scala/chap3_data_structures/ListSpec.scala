@@ -105,4 +105,64 @@ class ListSpec extends WordSpec with Matchers {
       }
     }
   }
+
+  "Method init" must {
+    "return a List" when {
+      "is input is a non-empty list" in {
+        withClue("the result must be List(1, 2, 3, 4) but it was ") {
+          List.init(list) should be(List(1, 2, 3, 4))
+        }
+      }
+      "is input is an empty list" in {
+        withClue("the result must be Nil but it was ") {
+          List.init(Nil) should be(Nil)
+        }
+      }
+    }
+  }
+
+  "Method sum" must {
+    "return an int value" when {
+      "is input is a five int list" in {
+        withClue("the result must be 15 but it was ") {
+          List.sum(list) should be(15)
+        }
+      }
+      "is input is an empty list" in {
+        withClue("the result must be 0 but it was ") {
+          List.sum(Nil) should be(0)
+        }
+      }
+    }
+  }
+
+  "Method product" must {
+    "return a double value" when {
+      "is input is a five double list" in {
+        withClue("the result must be 120 but it was ") {
+          List.product(List(1.0, 2.0, 3.0, 4.0, 5.0)) should be(120.0)
+        }
+      }
+      "is input is an empty list" in {
+        withClue("the result must be 1 but it was ") {
+          List.product(Nil) should be(1.0)
+        }
+      }
+      "is input is a five double list with one 0" in {
+        withClue("the result must be 0 but it was ") {
+          List.product(List(1.0, 2.0, 0.0, 4.0, 5.0)) should be(0.0)
+        }
+      }
+    }
+  }
+
+  "Method foldRight" must {
+    "return a list" when {
+      "is input are a list and Nil and the function is Cons" in {
+        withClue("the result must be List(1, 2, 3) but was ") {
+          List.foldRight(List(1, 2, 3), Nil: List[Int])(Cons(_, _)) should be(List(1, 2, 3))
+        }
+      }
+    }
+  }
 }
