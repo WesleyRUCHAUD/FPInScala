@@ -345,4 +345,14 @@ class ListSpec extends WordSpec with Matchers {
       }
     }
   }
+
+  "Method flatten" must {
+    "return a list" when {
+      "is input is a five non-empty list list" in {
+        withClue("The result must be List(1, 2, 3, 4, 5) but it was ") {
+          List.flatten(List(List(1, 2), List(3), List(4, 5))) should be(list)
+        }
+      }
+    }
+  }
 }

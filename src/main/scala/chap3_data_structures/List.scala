@@ -103,6 +103,10 @@ object List {
     foldLeft(as, Nil: List[A])((t, h) => Cons(h, t))
   }
 
+  def flatten[A](ass: List[List[A]]): List[A] = {
+    foldLeft(ass, Nil: List[A])(append)
+  }
+
   def apply[A](as: A*): List[A] = {
     if (as.isEmpty) Nil
     else Cons(as.head, apply(as.tail: _*))
