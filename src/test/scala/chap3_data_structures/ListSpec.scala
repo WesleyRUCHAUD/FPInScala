@@ -165,4 +165,39 @@ class ListSpec extends WordSpec with Matchers {
       }
     }
   }
+
+  "Method foldLeft" must {
+    "return a list" when {
+      "is input are a list and Nil and the function is Cons" in {
+        withClue("the result must be List(3, 2, 1) but was ") {
+          List.foldLeft(List(1, 2, 3), Nil: List[Int])((t, h) => Cons(h, t)) should be(List(3, 2, 1))
+        }
+      }
+      "is input is a five int list and 0 and the function is _ + _" in {
+        withClue("the result must be 15 but it was ") {
+          List.foldLeft(list, 0)(_ + _) should be(15)
+        }
+      }
+    }
+  }
+
+  "Method length" must {
+    "return an int value" when {
+      "is input is a five int list" in {
+        withClue("the result must be 5 but it was ") {
+          List.length(list) should be(5)
+        }
+      }
+      "is input is a 3 string list" in {
+        withClue("the result must be 3 but it was ") {
+          List.length(List("a", "b", "c")) should be(3)
+        }
+      }
+      "is input is a empty list" in {
+        withClue("the result must be 0 but it was ") {
+          List.length(Nil) should be(0)
+        }
+      }
+    }
+  }
 }

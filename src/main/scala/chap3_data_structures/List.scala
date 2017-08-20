@@ -52,12 +52,23 @@ object List {
     }
   }
 
+  def foldLeft[A,B](as: List[A], acc: B)(f: (B, A) => B): B = {
+    as match {
+      case Nil => acc
+      case Cons(h, t) => foldLeft(t, f(acc, h))(f)
+    }
+  }
+
   def sum(is: List[Int]): Int = {
     foldRight(is, 0)(_ + _)
   }
 
   def product(ds: List[Double]): Double = {
     foldRight(ds, 1.0)(_ * _)
+  }
+
+  def length[A](l: List[A]): Int = {
+    foldRight(l, 0)((_, b) => b + 1)
   }
 
   def apply[A](as: A*): List[A] = {
