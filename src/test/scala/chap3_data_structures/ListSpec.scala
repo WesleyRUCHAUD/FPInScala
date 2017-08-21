@@ -346,11 +346,26 @@ class ListSpec extends WordSpec with Matchers {
     }
   }
 
-  "Method flatten" must {
+  "Method concat" must {
     "return a list" when {
       "is input is a five non-empty list list" in {
         withClue("The result must be List(1, 2, 3, 4, 5) but it was ") {
-          List.flatten(List(List(1, 2), List(3), List(4, 5))) should be(list)
+          List.concat(List(List(1, 2), List(3), List(4, 5))) should be(list)
+        }
+      }
+    }
+  }
+
+  "Method addOne" must {
+    "return a list of Int" when {
+      "is input is a five int list" in {
+        withClue("The result must be List(2, 3, 4, 5, 6) but it was ") {
+          List.addOne(list) should be(List(2, 3, 4, 5, 6))
+        }
+      }
+      "is input is an empty list" in {
+        withClue("The result must be Nil but it was ") {
+          List.addOne(Nil) should be(Nil)
         }
       }
     }

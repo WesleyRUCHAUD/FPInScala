@@ -103,8 +103,15 @@ object List {
     foldLeft(as, Nil: List[A])((t, h) => Cons(h, t))
   }
 
-  def flatten[A](ass: List[List[A]]): List[A] = {
+  def concat[A](ass: List[List[A]]): List[A] = {
     foldLeft(ass, Nil: List[A])(append)
+  }
+
+  def addOne(is: List[Int]): List[Int] = {
+    is match {
+      case Cons(h, t) => Cons(h + 1, addOne(t))
+      case _ => Nil
+    }
   }
 
   def apply[A](as: A*): List[A] = {
